@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frosty Services — AC Repair & Appliance Service in Manipur</title>
+<meta name="description" content="Trusted AC repair, inverter troubleshooting, stabilizer installation and appliance service across Manipur. Serving Imphal, Ukhrul, Churachandpur and all districts. Pay after service. UPI accepted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#03060F;
+    --dark:#071020;
+    --card:#0C1726;
+    --card2:#0F1E30;
+    --border:#1A2D45;
+    --blue:#1A6FD4;
+    --blue-light:#2E8FF5;
+    --cyan:#38C5F5;
+    --cyan-pale:rgba(56,197,245,.12);
+    --white:#EEF4FF;
+    --dim:#7A9BB8;
+    --muted:#435870;
+    --saffron:#FF9B1A;
+    --green:#22C55E;
+    --yellow:#FACC15;
+    --red:#EF4444;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:16px}
+  body{background:var(--deep);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6}
+
+  /* STATUS BANNER */
+  .status-bar{
+    background:#071A0A;
+    border-bottom:1px solid #1A3A1A;
+    padding:9px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    flex-wrap:wrap;
+    font-size:.82rem;
+    position:sticky;top:0;z-index:200;
+  }
+  .status-dot{
+    display:inline-flex;align-items:center;gap:.5rem;font-weight:600;color:#4ADE80;
+  }
+  .status-dot span.dot{
+    width:8px;height:8px;border-radius:50%;background:#22C55E;
+    box-shadow:0 0 6px #22C55E;animation:pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+  .status-bar-right{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+  .status-badge{
+    background:rgba(255,155,26,.12);border:1px solid rgba(255,155,26,.3);
+    color:var(--saffron);border-radius:20px;padding:2px 10px;font-size:.74rem;font-weight:600;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:41px;z-index:150;
+    background:rgba(7,16,32,.92);backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);
+    padding:0 5%;height:65px;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:top 0.3s;
+  }
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-img{
+    width:44px;height:44px;
+    background:#fff;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    padding:4px;
+  }
+  .logo-svg{width:36px;height:36px;}
+  .logo-text{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);}
+  .logo-text span{color:var(--cyan);}
+  .logo-sub{font-size:.65rem;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-top:-2px;}
+  .nav-links{display:flex;gap:1.5rem;list-style:none;}
+  .nav-links a{color:var(--dim);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-right{display:flex;align-items:center;gap:.75rem;}
+  .nav-call{color:var(--cyan);font-weight:700;font-size:.85rem;text-decoration:none;letter-spacing:.3px;}
+  .btn-sm{
+    background:var(--cyan);color:var(--deep);font-family:'Inter',sans-serif;
+    font-size:.8rem;font-weight:700;padding:8px 18px;border-radius:6px;border:none;
+    cursor:pointer;text-decoration:none;transition:all .2s;
+  }
+  .btn-sm:hover{background:#5CE0FF;transform:translateY(-1px);}
+
+  /* DISTRICT SELECTOR */
+  .district-bar{
+    background:var(--dark);border-bottom:1px solid var(--border);
+    padding:10px 5%;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+    font-size:.85rem;
+  }
+  .district-label{color:var(--dim);font-size:.8rem;white-space:nowrap;}
+  .district-select{
+    background:var(--card);border:1px solid var(--border);color:var(--white);
+    font-family:'Inter',sans-serif;font-size:.85rem;
+    padding:7px 12px;border-radius:7px;outline:none;cursor:pointer;
+    transition:border-color .2s;min-width:220px;
+  }
+  .district-select:focus{border-color:var(--cyan);}
+  .district-info{
+    background:var(--cyan-pale);border:1px solid rgba(56,197,245,.2);
+    border-radius:7px;padding:6px 14px;font-size:.8rem;color:var(--cyan);
+    display:none;font-weight:500;
+  }
+  .district-info.show{display:block;}
+
+  /* HERO */
+  .hero{
+    min-height:90vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;padding:80px 5% 60px;position:relative;overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 65% 55% at 50% 25%,rgba(26,111,212,.1) 0%,transparent 70%),
+      radial-gradient(ellipse 35% 35% at 15% 75%,rgba(56,197,245,.06) 0%,transparent 60%),
+      linear-gradient(180deg,var(--deep) 0%,#05080F 100%);
+  }
+  .hero-grid{
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(56,197,245,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(56,197,245,.04) 1px,transparent 1px);
+    background-size:50px 50px;
+    mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black 20%,transparent 80%);
+  }
+  .particles{position:absolute;inset:0;pointer-events:none;}
+  .particle{
+    position:absolute;border-radius:50%;opacity:0;
+    animation:float var(--d,8s) linear infinite;animation-delay:var(--dl,0s);
+  }
+  @keyframes float{
+    0%{transform:translateY(100vh) translateX(0);opacity:0}
+    10%{opacity:.6}90%{opacity:.3}
+    100%{transform:translateY(-10vh) translateX(var(--dx,20px));opacity:0}
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:rgba(56,197,245,.1);border:1px solid rgba(56,197,245,.25);
+    border-radius:20px;padding:6px 16px;font-size:.78rem;font-weight:600;
+    color:var(--cyan);margin-bottom:1.5rem;position:relative;z-index:1;
+  }
+  .hero h1{
+    font-family:'Manrope',sans-serif;font-weight:900;
+    font-size:clamp(2.2rem,6vw,4.2rem);letter-spacing:-1.5px;line-height:1.08;
+    position:relative;z-index:1;margin-bottom:1.25rem;max-width:800px;
+  }
+  .hero h1 .accent{color:var(--cyan);}
+  .hero-sub{
+    color:var(--dim);font-size:1rem;max-width:520px;margin:0 auto 2rem;
+    position:relative;z-index:1;line-height:1.75;
+  }
+  .hero-actions{
+    display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center;
+    position:relative;z-index:1;margin-bottom:2.5rem;
+  }
+  .btn-hero{
+    background:var(--cyan);color:var(--deep);font-family:'Inter',sans-serif;
+    font-size:.95rem;font-weight:700;padding:14px 28px;border-radius:8px;border:none;
+    cursor:pointer;text-decoration:none;transition:all .2s;
+    box-shadow:0 0 28px rgba(56,197,245,.25);display:inline-flex;align-items:center;gap:.5rem;
+  }
+  .btn-hero:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(56,197,245,.4);}
+  .btn-wa{
+    background:#25D366;color:#fff;font-family:'Inter',sans-serif;
+    font-size:.95rem;font-weight:700;padding:14px 28px;border-radius:8px;border:none;
+    cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;
+  }
+  .btn-wa:hover{background:#20BC5A;transform:translateY(-2px);}
+  .hero-trust{
+    display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:center;
+    position:relative;z-index:1;
+  }
+  .trust-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;color:var(--dim);}
+  .tdot{width:5px;height:5px;background:var(--cyan);border-radius:50%;flex-shrink:0;}
+
+  /* UPI TRUST STRIP */
+  .upi-strip{
+    background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:18px 5%;
+    display:flex;align-items:center;justify-content:center;
+    gap:2rem;flex-wrap:wrap;
+  }
+  .upi-item{
+    display:flex;align-items:center;gap:.5rem;font-size:.83rem;font-weight:600;
+  }
+  .upi-icon{
+    width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+    font-size:1rem;font-weight:800;
+  }
+  .pay-label{
+    background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);
+    color:#4ADE80;border-radius:6px;padding:3px 10px;font-size:.75rem;font-weight:700;
+    display:inline-block;
+  }
+
+  /* SECTIONS */
+  section{padding:90px 5%;}
+  .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:.85rem;}
+  .sec-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.8px;line-height:1.15;margin-bottom:.85rem;}
+  .sec-sub{color:var(--dim);font-size:.95rem;max-width:500px;line-height:1.75;margin-bottom:2.5rem;}
+
+  /* SERVICES */
+  #services{background:var(--dark);}
+  .services-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .svc-tab{
+    padding:8px 18px;border-radius:20px;font-size:.83rem;font-weight:600;
+    border:1px solid var(--border);background:transparent;color:var(--dim);
+    cursor:pointer;transition:all .2s;
+  }
+  .svc-tab.active,svc-tab:hover{background:var(--cyan-pale);border-color:rgba(56,197,245,.3);color:var(--cyan);}
+  .svc-tab:hover{background:var(--cyan-pale);color:var(--cyan);}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+  .svc-card{
+    background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:1.5rem;transition:all .25s;cursor:pointer;
+    display:none;
+  }
+  .svc-card.show{display:block;}
+  .svc-card:hover{border-color:rgba(56,197,245,.3);transform:translateY(-3px);}
+  .svc-emoji{font-size:1.8rem;margin-bottom:.85rem;}
+  .svc-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:1rem;margin-bottom:.4rem;letter-spacing:-.3px;}
+  .svc-desc{font-size:.84rem;color:var(--dim);line-height:1.6;margin-bottom:1rem;}
+  .svc-price{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:1.15rem;color:var(--cyan);
+    display:flex;align-items:center;gap:.5rem;
+  }
+  .svc-from{font-size:.72rem;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif;}
+  .svc-badge{
+    display:inline-block;font-size:.7rem;font-weight:700;padding:3px 8px;
+    border-radius:4px;margin-bottom:.5rem;
+  }
+  .badge-inv{background:rgba(250,204,21,.1);color:var(--yellow);border:1px solid rgba(250,204,21,.2);}
+  .badge-pop{background:rgba(56,197,245,.1);color:var(--cyan);border:1px solid rgba(56,197,245,.2);}
+  .badge-new{background:rgba(255,155,26,.1);color:var(--saffron);border:1px solid rgba(255,155,26,.2);}
+
+  /* POWER SECTION */
+  #power{background:linear-gradient(160deg,#060C18 0%,var(--deep) 100%);}
+  .power-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+  .power-visual{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:1.5rem;font-family:'Courier New',monospace;font-size:.8rem;color:var(--cyan);
+  }
+  .pv-header{display:flex;justify-content:space-between;margin-bottom:1rem;opacity:.6;font-size:.7rem;letter-spacing:1px;}
+  .volt-bar-wrap{margin-bottom:.75rem;}
+  .volt-label{display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.25rem;}
+  .volt-bar{height:10px;border-radius:5px;background:var(--border);overflow:hidden;}
+  .volt-fill{height:100%;border-radius:5px;transition:width .5s;}
+  .volt-ok{background:linear-gradient(90deg,#1A6FD4,#38C5F5);}
+  .volt-warn{background:linear-gradient(90deg,#FF9B1A,#FACC15);}
+  .volt-crit{background:linear-gradient(90deg,#EF4444,#FF9B1A);}
+  .pv-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;}
+  .pv-metric{
+    background:rgba(56,197,245,.05);border:1px solid rgba(56,197,245,.12);
+    border-radius:7px;padding:.6rem .75rem;font-size:.72rem;
+  }
+  .pv-metric .v{font-size:1rem;font-weight:700;margin-top:2px;}
+  .blink{animation:blink 1.2s step-end infinite;}
+  @keyframes blink{50%{opacity:0}}
+
+  /* PRICING */
+  #pricing{background:var(--dark);}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem;}
+  .price-card{
+    border:1px solid var(--border);border-radius:13px;padding:1.75rem;
+    background:var(--card);transition:all .25s;position:relative;
+  }
+  .price-card:hover{border-color:rgba(56,197,245,.3);transform:translateY(-3px);}
+  .price-card.featured{border-color:var(--cyan);background:linear-gradient(155deg,rgba(56,197,245,.06) 0%,var(--card) 60%);}
+  .pfeatured-badge{
+    position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+    background:var(--cyan);color:var(--deep);font-size:.68rem;font-weight:700;
+    letter-spacing:.8px;text-transform:uppercase;padding:3px 14px;border-radius:20px;white-space:nowrap;
+  }
+  .price-name{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;}
+  .price-amount{font-family:'Manrope',sans-serif;font-weight:900;font-size:2.1rem;letter-spacing:-1px;line-height:1;margin-bottom:.2rem;}
+  .price-period{font-size:.8rem;color:var(--muted);margin-bottom:1.25rem;}
+  .price-div{border:none;border-top:1px solid var(--border);margin-bottom:1.25rem;}
+  .pf{display:flex;align-items:flex-start;gap:.6rem;font-size:.875rem;color:var(--dim);margin-bottom:.65rem;}
+  .pfc{color:var(--cyan);flex-shrink:0;margin-top:1px;}
+  .pfx{color:var(--muted);flex-shrink:0;margin-top:1px;}
+  .btn-outline{
+    width:100%;text-align:center;display:block;padding:12px;
+    background:transparent;color:var(--white);font-family:'Inter',sans-serif;
+    font-size:.85rem;font-weight:600;border-radius:7px;border:1px solid var(--border);
+    cursor:pointer;text-decoration:none;transition:all .2s;
+  }
+  .btn-outline:hover{border-color:var(--cyan);color:var(--cyan);}
+  .btn-fill{
+    width:100%;text-align:center;display:block;padding:13px;
+    background:var(--cyan);color:var(--deep);font-family:'Inter',sans-serif;
+    font-size:.88rem;font-weight:700;border-radius:7px;border:none;cursor:pointer;
+    text-decoration:none;transition:all .2s;
+  }
+  .btn-fill:hover{background:#5CE0FF;}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+  .proj-card{
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;
+    background:var(--card);transition:all .25s;
+  }
+  .proj-card:hover{border-color:rgba(56,197,245,.25);transform:translateY(-3px);}
+  .proj-card:first-child{grid-column:span 2;}
+  .proj-thumb{
+    height:180px;display:flex;align-items:center;justify-content:center;
+    font-size:2.5rem;position:relative;overflow:hidden;
+  }
+  .proj-card:first-child .proj-thumb{height:230px;}
+  .proj-tag{
+    position:absolute;top:10px;left:10px;
+    background:rgba(7,16,32,.85);border:1px solid var(--border);
+    color:var(--cyan);font-size:.68rem;font-weight:700;letter-spacing:1px;
+    text-transform:uppercase;padding:3px 9px;border-radius:20px;
+  }
+  .proj-loc{
+    position:absolute;bottom:10px;right:10px;
+    background:rgba(7,16,32,.85);border:1px solid var(--border);
+    color:var(--dim);font-size:.7rem;padding:3px 9px;border-radius:20px;
+  }
+  .proj-body{padding:1.1rem 1.3rem 1.4rem;}
+  .proj-body h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem;letter-spacing:-.2px;}
+  .proj-body p{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:.6rem;}
+  .proj-result{font-size:.78rem;font-weight:600;color:var(--cyan);display:flex;align-items:center;gap:.35rem;}
+  .proj-result::before{content:'→';}
+
+  /* DISTRICTS TABLE */
+  #districts{background:var(--dark);}
+  .dist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+  .dist-card{
+    border:1px solid var(--border);border-radius:10px;padding:1.25rem;
+    background:var(--card);display:flex;align-items:center;gap:1rem;
+    transition:all .2s;cursor:pointer;
+  }
+  .dist-card:hover{border-color:rgba(56,197,245,.25);}
+  .dist-num{
+    font-family:'Manrope',sans-serif;font-weight:900;font-size:1.3rem;
+    color:var(--border);min-width:28px;line-height:1;
+  }
+  .dist-info h4{font-weight:600;font-size:.9rem;margin-bottom:.2rem;}
+  .dist-info p{font-size:.78rem;color:var(--muted);}
+  .dist-reach{
+    margin-left:auto;font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:5px;flex-shrink:0;
+  }
+  .r-yes{background:rgba(34,197,94,.1);color:#4ADE80;border:1px solid rgba(34,197,94,.2);}
+  .r-fee{background:rgba(250,204,21,.1);color:var(--yellow);border:1px solid rgba(250,204,21,.2);}
+  .r-plan{background:rgba(239,68,68,.1);color:#F87171;border:1px solid rgba(239,68,68,.2);}
+
+  /* LITE MODE */
+  #lite{background:linear-gradient(160deg,#04080F 0%,var(--dark) 100%);}
+  .lite-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+  .lite-screen{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    overflow:hidden;
+  }
+  .lite-topbar{
+    background:var(--dark);padding:.85rem 1rem;
+    display:flex;align-items:center;gap:.75rem;border-bottom:1px solid var(--border);
+    font-size:.75rem;
+  }
+  .signal-bars{display:flex;align-items:flex-end;gap:2px;height:14px;}
+  .bar{width:3px;background:var(--cyan);border-radius:1px;}
+  .lite-stat{
+    padding:1rem;display:flex;flex-direction:column;gap:.5rem;
+  }
+  .lite-row{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.78rem;padding:.5rem .6rem;border-radius:6px;
+    background:var(--card2);
+  }
+  .lite-row span{color:var(--dim);}
+  .lite-row strong{color:var(--green);}
+  .lite-pbar{
+    height:6px;border-radius:3px;background:var(--border);overflow:hidden;
+    margin-bottom:.25rem;
+  }
+  .lite-pfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));}
+  .lite-note{font-size:.7rem;color:var(--muted);text-align:right;}
+
+  /* TESTIMONIALS */
+  #reviews{background:var(--dark);}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem;}
+  .rev-card{border:1px solid var(--border);border-radius:12px;padding:1.5rem;background:var(--card);}
+  .rev-stars{color:#FACC15;font-size:.85rem;margin-bottom:.85rem;letter-spacing:2px;}
+  .rev-text{font-size:.875rem;color:var(--dim);line-height:1.7;margin-bottom:1rem;font-style:italic;}
+  .rev-author{font-size:.82rem;font-weight:600;color:var(--white);}
+  .rev-role{font-size:.76rem;color:var(--muted);margin-top:2px;}
+
+  /* FAQ */
+  .faq-list{max-width:680px;margin:2.5rem auto 0;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{
+    width:100%;background:none;border:none;color:var(--white);
+    font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;
+    text-align:left;padding:1.15rem 0;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color .2s;
+  }
+  .faq-q:hover{color:var(--cyan);}
+  .faq-arr{font-size:1.1rem;transition:transform .25s;flex-shrink:0;color:var(--muted);}
+  .faq-item.open .faq-arr{transform:rotate(45deg);color:var(--cyan);}
+  .faq-a{display:none;font-size:.86rem;color:var(--muted);line-height:1.7;padding-bottom:1.15rem;}
+  .faq-item.open .faq-a{display:block;}
+
+  /* CONTACT */
+  #contact{background:var(--dark);}
+  .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
+  .form-wrap{display:flex;flex-direction:column;gap:.85rem;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+  .fgroup{display:flex;flex-direction:column;gap:.35rem;}
+  .fgroup label{font-size:.78rem;font-weight:600;color:var(--dim);letter-spacing:.3px;}
+  .fgroup input,.fgroup select,.fgroup textarea{
+    background:var(--card2);border:1px solid var(--border);border-radius:8px;
+    color:var(--white);font-family:'Inter',sans-serif;font-size:.88rem;
+    padding:11px 14px;outline:none;transition:border-color .2s;width:100%;
+  }
+  .fgroup select option{background:var(--card);}
+  .fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-color:var(--cyan);}
+  .fgroup textarea{resize:vertical;min-height:100px;}
+  .wa-pre{
+    background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);
+    border-radius:8px;padding:.85rem 1rem;font-size:.82rem;color:#4ADE80;
+    display:flex;align-items:center;gap:.5rem;line-height:1.5;
+  }
+  .contact-info-col{display:flex;flex-direction:column;gap:1.5rem;}
+  .cinfo-block h4{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;}
+  .cinfo-block p,.cinfo-block a{font-size:.92rem;color:var(--white);text-decoration:none;font-weight:500;}
+  .cinfo-block a:hover{color:var(--cyan);}
+  .btn-submit{
+    background:var(--cyan);color:var(--deep);font-family:'Inter',sans-serif;
+    font-size:.92rem;font-weight:700;padding:13px;border-radius:8px;border:none;
+    cursor:pointer;transition:all .2s;width:100%;
+  }
+  .btn-submit:hover{background:#5CE0FF;}
+
+  /* FOOTER */
+  footer{background:#030509;border-top:1px solid var(--border);padding:3.5rem 5% 1.75rem;}
+  .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem;}
+  .footer-brand p{font-size:.85rem;color:var(--muted);line-height:1.7;margin:.85rem 0 1rem;}
+  .footer-phone{color:var(--cyan);font-weight:700;font-size:1rem;text-decoration:none;}
+  .fcol h5{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem;}
+  .fcol ul{list-style:none;}
+  .fcol li{margin-bottom:.5rem;}
+  .fcol a{color:var(--dim);text-decoration:none;font-size:.875rem;transition:color .2s;}
+  .fcol a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid var(--border);padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;}
+  .footer-copy{font-size:.78rem;color:var(--muted);}
+  .footer-badges{display:flex;gap:.6rem;flex-wrap:wrap;}
+  .fbadge{background:var(--card);border:1px solid var(--border);padding:3px 11px;border-radius:20px;font-size:.7rem;font-weight:600;color:var(--muted);letter-spacing:.4px;}
+
+  /* FLOATING BUTTONS */
+  .float-cta{position:fixed;bottom:22px;right:22px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;}
+  .float-btn{
+    display:flex;align-items:center;gap:.5rem;padding:11px 16px;
+    border-radius:50px;font-weight:700;font-size:.83rem;text-decoration:none;
+    box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .2s;
+  }
+  .float-btn:hover{transform:scale(1.04);}
+  .fwa{background:#25D366;color:#fff;}
+  .fcall{background:var(--cyan);color:var(--deep);}
+
+  /* STATS ROW */
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:4.5rem;}
+  .stat-item{background:var(--card);padding:1.75rem 1.25rem;text-align:center;}
+  .stat-num{font-family:'Manrope',sans-serif;font-weight:900;font-size:2.2rem;color:var(--cyan);letter-spacing:-1px;line-height:1;margin-bottom:.3rem;}
+  .stat-label{font-size:.76rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .stats-row{grid-template-columns:repeat(2,1fr);}
+    .svc-grid{grid-template-columns:1fr 1fr;}
+    .power-layout,.lite-layout,.contact-layout{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr 1fr;}
+    .proj-card:first-child{grid-column:span 2;}
+    .dist-grid{grid-template-columns:1fr 1fr;}
+    .rev-grid{grid-template-columns:1fr 1fr;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:600px){
+    section{padding:65px 5%;}
+    .svc-grid,.proj-grid,.dist-grid,.rev-grid{grid-template-columns:1fr;}
+    .proj-card:first-child{grid-column:span 1;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;}
+    .float-cta{bottom:14px;right:14px;}
+    nav{top:37px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ STATUS BANNER ═══ -->
+<div class="status-bar" id="statusBar">
+  <div class="status-dot">
+    <span class="dot"></span>
+    <span id="statusText">🟢 Open Today — Home visits available across Imphal & Valley districts</span>
+  </div>
+  <div class="status-bar-right">
+    <span class="status-badge">Updated: Today 8 AM</span>
+    <select onchange="updateStatus(this.value)" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:#aaa;font-size:.75rem;border-radius:5px;padding:3px 7px;cursor:pointer;">
+      <option value="open">🟢 Open — Normal Service</option>
+      <option value="partial">🟡 Remote Consults Only</option>
+      <option value="closed">🔴 Closed Today</option>
+      <option value="valley">🟠 Valley Districts Only</option>
+    </select>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#top" class="logo">
+    <div class="logo-img">
+      <!-- Frosty Services logo SVG recreation -->
+      <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(50,50)">
+          <!-- Crown / AC unit shape -->
+          <path d="M-35 10 Q-35 22 -24 22 L24 22 Q35 22 35 10 L35 -5 Q25 2 15 -2 L10 -22 L0 -28 L-10 -22 L-15 -2 Q-25 2 -35 -5 Z" fill="#1A5FC8" />
+          <!-- Bottom bar -->
+          <rect x="-28" y="22" width="56" height="8" rx="4" fill="#38C5F5"/>
+          <!-- Snowflake -->
+          <g fill="none" stroke="#38C5F5" stroke-width="3.5" stroke-linecap="round">
+            <line x1="0" y1="-20" x2="0" y2="14"/>
+            <line x1="-18" y1="-3" x2="18" y2="-3"/>
+            <line x1="-13" y1="-15" x2="13" y2="11"/>
+            <line x1="13" y1="-15" x2="-13" y2="11"/>
+            <line x1="0" y1="-20" x2="-5" y2="-12"/>
+            <line x1="0" y1="-20" x2="5" y2="-12"/>
+            <line x1="0" y1="14" x2="-5" y2="6"/>
+            <line x1="0" y1="14" x2="5" y2="6"/>
+            <line x1="-18" y1="-3" x2="-11" y2="-8"/>
+            <line x1="-18" y1="-3" x2="-11" y2="2"/>
+            <line x1="18" y1="-3" x2="11" y2="-8"/>
+            <line x1="18" y1="-3" x2="11" y2="2"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <div class="logo-text">Frosty <span>Services</span></div>
+      <div class="logo-sub">Manipur's AC & Appliance Experts</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#power">Power Protection</a></li>
+    <li><a href="#pricing">AMC Plans</a></li>
+    <li><a href="#districts">Districts</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+917005000000" class="nav-call">+91 70050 00000</a>
+    <a href="https://wa.me/917005000000?text=Hi%2C%20I%20need%20AC%20service%20in%20%5BYour%20Area%5D" class="btn-sm">WhatsApp Now</a>
+  </div>
+</nav>
+
+<!-- ═══ DISTRICT SELECTOR ═══ -->
+<div class="district-bar">
+  <span class="district-label">📍 Select your district to check service & travel charges:</span>
+  <select class="district-select" onchange="showDistrictInfo(this.value)">
+    <option value="">— Choose your district —</option>
+    <option value="imphal-w">Imphal West</option>
+    <option value="imphal-e">Imphal East</option>
+    <option value="bishnupur">Bishnupur</option>
+    <option value="thoubal">Thoubal</option>
+    <option value="kakching">Kakching</option>
+    <option value="churachandpur">Churachandpur (Hill)</option>
+    <option value="ukhrul">Ukhrul (Hill)</option>
+    <option value="senapati">Senapati (Hill)</option>
+    <option value="tamenglong">Tamenglong (Hill)</option>
+    <option value="chandel">Chandel</option>
+    <option value="jiribam">Jiribam</option>
+    <option value="other">Other / Remote</option>
+  </select>
+  <div class="district-info" id="distInfo">—</div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-badge">⚡ Manipur's Most Trusted AC & Appliance Service</div>
+  <h1>Cool comfort,<br><span class="accent">delivered to your door.</span></h1>
+  <p class="hero-sub">AC repair, inverter troubleshooting, voltage stabilizer setup and appliance service across all Manipur districts. Pay nothing until the job is done right.</p>
+
+  <div class="hero-actions">
+    <a href="https://wa.me/917005000000?text=Hi%20Frosty%20Services%2C%20I%20need%20AC%20repair%20in%20%5BYour%20Area%2C%20Manipur%5D.%20Please%20send%20me%20a%20technician." class="btn-wa">💬 WhatsApp Us Instantly</a>
+    <a href="#contact" class="btn-hero">📋 Get a Quote</a>
+  </div>
+
+  <div class="hero-trust">
+    <div class="trust-item"><div class="tdot"></div>₹0 Advance — Pay After Service</div>
+    <div class="trust-item"><div class="tdot"></div>UPI · GPay · PhonePe · Paytm</div>
+    <div class="trust-item"><div class="tdot"></div>All 16 Districts Covered</div>
+    <div class="trust-item"><div class="tdot"></div>Inverter-Friendly Repairs</div>
+  </div>
+</section>
+
+<!-- ═══ UPI TRUST STRIP ═══ -->
+<div class="upi-strip">
+  <div class="upi-item">
+    <div class="upi-icon" style="background:#1a56db15;border:1px solid #1a56db30;color:#60a5fa;font-size:.8rem;font-weight:800;">G</div>
+    <span style="font-size:.85rem;color:var(--dim);">Google Pay</span>
+  </div>
+  <div class="upi-item">
+    <div class="upi-icon" style="background:#7c3aed15;border:1px solid #7c3aed30;color:#c084fc;font-size:.75rem;font-weight:800;">Pe</div>
+    <span style="font-size:.85rem;color:var(--dim);">PhonePe</span>
+  </div>
+  <div class="upi-item">
+    <div class="upi-icon" style="background:#06b6d415;border:1px solid #06b6d430;color:#22d3ee;font-size:.75rem;font-weight:800;">Pt</div>
+    <span style="font-size:.85rem;color:var(--dim);">Paytm</span>
+  </div>
+  <div style="width:1px;height:30px;background:var(--border);"></div>
+  <div class="pay-label">₹0 Advance Required</div>
+  <span style="font-size:.85rem;color:var(--dim);">Pay only after the technician completes the work and you are satisfied.</span>
+</div>
+
+<!-- ═══ STATS ═══ -->
+<section style="padding-bottom:0;">
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">6+</div><div class="stat-label">Years in Manipur</div></div>
+    <div class="stat-item"><div class="stat-num">2,000+</div><div class="stat-label">Repairs Done</div></div>
+    <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">Districts Covered</div></div>
+    <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-label">Customer Rating</div></div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="eyebrow">Our Services</div>
+  <div class="sec-title">Everything cooling — and more.</div>
+  <p class="sec-sub">From simple AC gas refills to inverter PCB repairs and RO filter changes — all at your doorstep across Manipur.</p>
+
+  <div class="services-tabs">
+    <button class="svc-tab active" onclick="filterSvc('all',this)">All Services</button>
+    <button class="svc-tab" onclick="filterSvc('cooling',this)">❄️ AC & Cooling</button>
+    <button class="svc-tab" onclick="filterSvc('power',this)">⚡ Power Protection</button>
+    <button class="svc-tab" onclick="filterSvc('commercial',this)">🏢 Commercial AMC</button>
+    <button class="svc-tab" onclick="filterSvc('appliance',this)">🏠 Appliance Repair</button>
+  </div>
+
+  <div class="svc-grid">
+    <!-- COOLING -->
+    <div class="svc-card show" data-cat="cooling">
+      <div class="svc-badge badge-pop">Most Booked</div>
+      <div class="svc-emoji">🌊</div>
+      <div class="svc-name">Split AC Jet Wash & Deep Clean</div>
+      <div class="svc-desc">Chemical jet wash to remove mould, dust and humidity blockages — essential in Manipur's humid valley conditions. Improves cooling by 30% instantly.</div>
+      <div class="svc-price">₹ 499 <span class="svc-from">per unit, onsite</span></div>
+    </div>
+    <div class="svc-card show" data-cat="cooling">
+      <div class="svc-badge badge-inv">Inverter Specialist</div>
+      <div class="svc-emoji">🔌</div>
+      <div class="svc-name">Inverter AC PCB & Circuit Repair</div>
+      <div class="svc-desc">Diagnosis and repair of modern smart-inverter printed circuit boards damaged by voltage fluctuations — the #1 AC problem in Manipur.</div>
+      <div class="svc-price">₹ 799 <span class="svc-from">+ parts if needed</span></div>
+    </div>
+    <div class="svc-card show" data-cat="cooling">
+      <div class="svc-emoji">💨</div>
+      <div class="svc-name">AC Gas Refill & Leak Fix</div>
+      <div class="svc-desc">Full refrigerant top-up with leak detection. R22 and R410A gas available. Fixing gas leaks from poorly fitted pipes — a common issue after Manipur monsoons.</div>
+      <div class="svc-price">₹ 1,200 <span class="svc-from">gas + service</span></div>
+    </div>
+    <div class="svc-card show" data-cat="cooling">
+      <div class="svc-emoji">📦</div>
+      <div class="svc-name">New AC Installation & Dismantling</div>
+      <div class="svc-desc">Professional mounting for split and window ACs with proper pipe routing and drainage. Safe dismantling when you move house — with no gas wastage.</div>
+      <div class="svc-price">₹ 999 <span class="svc-from">installation</span></div>
+    </div>
+    <div class="svc-card show" data-cat="cooling">
+      <div class="svc-emoji">🔧</div>
+      <div class="svc-name">Window AC Full Service</div>
+      <div class="svc-desc">Complete overhaul — filter cleaning, coil wash, drain flush, thermostat check and performance testing. Flat rate, no hidden charges.</div>
+      <div class="svc-price">₹ 399 <span class="svc-from">flat rate</span></div>
+    </div>
+    <!-- POWER -->
+    <div class="svc-card show" data-cat="power">
+      <div class="svc-badge badge-inv">Protects Your AC</div>
+      <div class="svc-emoji">⚡</div>
+      <div class="svc-name">Voltage Stabilizer Installation</div>
+      <div class="svc-desc">We supply and install the right heavy-duty stabilizer to protect your expensive AC or refrigerator from Manipur's frequent voltage drops and power surges.</div>
+      <div class="svc-price">₹ 1,200 <span class="svc-from">supply + install</span></div>
+    </div>
+    <div class="svc-card show" data-cat="power">
+      <div class="svc-badge badge-new">High Demand</div>
+      <div class="svc-emoji">🔋</div>
+      <div class="svc-name">Home Inverter & Battery Wiring</div>
+      <div class="svc-desc">Set up backup inverter lines so fans and light cooling can run during Manipur's frequent power cuts. We wire it cleanly and safely into your home panel.</div>
+      <div class="svc-price">₹ 800 <span class="svc-from">wiring charge</span></div>
+    </div>
+    <div class="svc-card show" data-cat="power">
+      <div class="svc-emoji">🛡️</div>
+      <div class="svc-name">Surge Protector Fitting</div>
+      <div class="svc-desc">Single-point surge protectors for ACs, refrigerators and washing machines — an affordable line of defence against sudden current spikes after power restoration.</div>
+      <div class="svc-price">₹ 350 <span class="svc-from">per unit fitted</span></div>
+    </div>
+    <!-- COMMERCIAL -->
+    <div class="svc-card show" data-cat="commercial">
+      <div class="svc-badge badge-pop">Corporate</div>
+      <div class="svc-emoji">🏨</div>
+      <div class="svc-name">Cassette & Ceiling AC Maintenance</div>
+      <div class="svc-desc">Quarterly servicing of cassette, ducted and centralised AC units for hotels, banks, government offices and hospitals in and around Imphal.</div>
+      <div class="svc-price">₹ 2,500 <span class="svc-from">per unit / visit</span></div>
+    </div>
+    <div class="svc-card show" data-cat="commercial">
+      <div class="svc-emoji">📋</div>
+      <div class="svc-name">Annual Maintenance Contract</div>
+      <div class="svc-desc">Yearly AMC for offices and businesses — quarterly visits, priority emergency cover, documented service reports and discounted spare parts.</div>
+      <div class="svc-price">₹ 6,000 <span class="svc-from">per unit / year</span></div>
+    </div>
+    <!-- APPLIANCE -->
+    <div class="svc-card show" data-cat="appliance">
+      <div class="svc-emoji">❄️</div>
+      <div class="svc-name">Refrigerator Repair</div>
+      <div class="svc-desc">Gas charging, ice build-up fixes, door gasket replacement and compressor repair for single and double-door fridges. All major brands.</div>
+      <div class="svc-price">₹ 599 <span class="svc-from">diagnosis + repair</span></div>
+    </div>
+    <div class="svc-card show" data-cat="appliance">
+      <div class="svc-emoji">🫧</div>
+      <div class="svc-name">Washing Machine Service</div>
+      <div class="svc-desc">Top-load and front-load drum issues, drain pump blockages and PCB faults. We carry common spare parts for same-visit repair in most cases.</div>
+      <div class="svc-price">₹ 450 <span class="svc-from">service charge</span></div>
+    </div>
+    <div class="svc-card show" data-cat="appliance">
+      <div class="svc-badge badge-new">Daily Need</div>
+      <div class="svc-emoji">💧</div>
+      <div class="svc-name">RO Water Purifier Filter Change</div>
+      <div class="svc-desc">Complete filter replacement for all major RO systems — sediment, carbon, membrane and UV lamp. Clean drinking water is a daily necessity in Manipur.</div>
+      <div class="svc-price">₹ 299 <span class="svc-from">+ filter cost</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POWER PROTECTION ═══ -->
+<section id="power">
+  <div class="power-layout">
+    <div class="power-visual">
+      <div class="pv-header">
+        <span>FROSTY·POWER MONITOR</span>
+        <span class="blink">● LIVE DEMO</span>
+      </div>
+      <div class="volt-bar-wrap">
+        <div class="volt-label"><span>Your AC</span><span style="color:var(--yellow);">⚠️ 185V — Danger Zone</span></div>
+        <div class="volt-bar"><div class="volt-fill volt-warn" style="width:55%;"></div></div>
+      </div>
+      <div class="volt-bar-wrap">
+        <div class="volt-label"><span>With Stabilizer</span><span style="color:var(--cyan);">✓ 220V — Protected</span></div>
+        <div class="volt-bar"><div class="volt-fill volt-ok" style="width:90%;"></div></div>
+      </div>
+      <div class="volt-bar-wrap">
+        <div class="volt-label"><span>Surge Event</span><span style="color:#EF4444;">🔴 260V — Fridge at Risk</span></div>
+        <div class="volt-bar"><div class="volt-fill volt-crit" style="width:78%;"></div></div>
+      </div>
+      <div class="pv-metrics">
+        <div class="pv-metric"><div style="color:var(--muted)">ACs Protected</div><div class="v">1,240+</div></div>
+        <div class="pv-metric"><div style="color:var(--muted)">PCB Failures Prevented</div><div class="v">380+</div></div>
+        <div class="pv-metric"><div style="color:var(--muted)">Avg Repair Cost Saved</div><div class="v">₹ 8,000</div></div>
+        <div class="pv-metric"><div style="color:var(--muted)">Stabilizer Install Time</div><div class="v blink">~45 min</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="eyebrow">Power & Protection</div>
+      <div class="sec-title">Voltage drops kill ACs. We prevent that.</div>
+      <p class="sec-sub">Frequent power cuts and voltage fluctuations are a daily reality across Manipur. Without protection, your ₹40,000 inverter AC's PCB can burn out overnight. We prevent that.</p>
+
+      <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:2rem;">
+        <div style="display:flex;align-items:flex-start;gap:.85rem;padding:1.1rem;border:1px solid var(--border);border-radius:10px;background:var(--card2);">
+          <span style="font-size:1.3rem;">⚡</span>
+          <div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:.2rem;">Inverter-Friendly Repair Badge</div>
+            <div style="font-size:.8rem;color:var(--muted);">Every service we do is rated for inverter AC compatibility — we never risk your smart PCB during repair.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.85rem;padding:1.1rem;border:1px solid var(--border);border-radius:10px;background:var(--card2);">
+          <span style="font-size:1.3rem;">🔋</span>
+          <div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:.2rem;">Stabilizer Sizing Done Right</div>
+            <div style="font-size:.8rem;color:var(--muted);">We calculate the correct KVA rating for your AC's load — an undersized stabilizer is just as dangerous as none at all.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.85rem;padding:1.1rem;border:1px solid var(--border);border-radius:10px;background:var(--card2);">
+          <span style="font-size:1.3rem;">🛡️</span>
+          <div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:.2rem;">Backup Inverter Line Wiring</div>
+            <div style="font-size:.8rem;color:var(--muted);">We wire your home inverter so fans and light cooling keep running during Manipur's long power cuts — safely, with no fire risk.</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn-hero" style="display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;padding:12px 24px;border-radius:8px;text-decoration:none;">
+        ⚡ Book Stabilizer Install — ₹ 1,200
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AMC PRICING ═══ -->
+<section id="pricing">
+  <div style="text-align:center;">
+    <div class="eyebrow">Transparent AMC Pricing</div>
+    <div class="sec-title" style="text-align:center;">Annual maintenance plans in INR.</div>
+    <p style="color:var(--muted);font-size:.88rem;margin-top:.5rem;">All prices include service charge. GST 18% extra. No hidden fees.</p>
+  </div>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-name">Home Basic</div>
+      <div class="price-amount">₹ 4,500</div>
+      <div class="price-period">per AC unit · per year</div>
+      <hr class="price-div">
+      <div class="pf"><span class="pfc">✓</span> 2 service visits/year</div>
+      <div class="pf"><span class="pfc">✓</span> Filter & drain cleaning</div>
+      <div class="pf"><span class="pfc">✓</span> Gas pressure check</div>
+      <div class="pf"><span class="pfc">✓</span> WhatsApp support</div>
+      <div class="pf"><span class="pfx">–</span> Emergency callout</div>
+      <div class="pf"><span class="pfx">–</span> Parts included</div>
+      <br>
+      <a href="https://wa.me/917005000000?text=I%27d%20like%20the%20Home%20Basic%20AMC%20plan" class="btn-outline">Book on WhatsApp</a>
+    </div>
+    <div class="price-card featured">
+      <div class="pfeatured-badge">Most Popular</div>
+      <div class="price-name">Home Plus</div>
+      <div class="price-amount">₹ 7,500</div>
+      <div class="price-period">per AC unit · per year</div>
+      <hr class="price-div">
+      <div class="pf"><span class="pfc">✓</span> 4 service visits/year</div>
+      <div class="pf"><span class="pfc">✓</span> Deep jet chemical wash</div>
+      <div class="pf"><span class="pfc">✓</span> Gas top-up included</div>
+      <div class="pf"><span class="pfc">✓</span> Priority WhatsApp support</div>
+      <div class="pf"><span class="pfc">✓</span> 1 emergency callout/year</div>
+      <div class="pf"><span class="pfx">–</span> Spare parts included</div>
+      <br>
+      <a href="https://wa.me/917005000000?text=I%27d%20like%20the%20Home%20Plus%20AMC%20plan" class="btn-fill">Book on WhatsApp</a>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Business AMC</div>
+      <div class="price-amount">₹ 6,000</div>
+      <div class="price-period">per unit · per year · offices & shops</div>
+      <hr class="price-div">
+      <div class="pf"><span class="pfc">✓</span> Quarterly service visits</div>
+      <div class="pf"><span class="pfc">✓</span> Cassette & ceiling ACs</div>
+      <div class="pf"><span class="pfc">✓</span> Service reports provided</div>
+      <div class="pf"><span class="pfc">✓</span> GST invoice issued</div>
+      <div class="pf"><span class="pfc">✓</span> Emergency priority cover</div>
+      <div class="pf"><span class="pfc">✓</span> Discounted spare parts</div>
+      <br>
+      <a href="https://wa.me/917005000000?text=I%27d%20like%20a%20Business%20AMC%20quote" class="btn-outline">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS / WORK ═══ -->
+<section style="background:var(--dark);">
+  <div class="eyebrow">Recent Work</div>
+  <div class="sec-title">Jobs across Manipur.</div>
+  <p class="sec-sub">Real work done for real people in Manipur — homes, shops, hotels and offices.</p>
+
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#0A1A2E,#061020);">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,111,212,.08) 0%,transparent 100%);"></div>
+        <span style="position:relative;z-index:1;font-size:3rem;">🏨</span>
+        <div class="proj-tag">Hotel — Commercial</div>
+        <div class="proj-loc">📍 Imphal West</div>
+      </div>
+      <div class="proj-body">
+        <h3>Classic Grande Hotel, Imphal — 24 AC Units AMC</h3>
+        <p>Annual maintenance contract covering 24 split ACs across 3 floors. Quarterly service, priority emergency cover and all gas top-ups included. Signed a 2-year contract.</p>
+        <div class="proj-result">Zero AC downtime across entire tourist season</div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#0A1E14,#06120C);">
+        <span style="position:relative;z-index:1;font-size:2.2rem;">🏦</span>
+        <div class="proj-tag">Bank — Corporate</div>
+        <div class="proj-loc">📍 Thoubal</div>
+      </div>
+      <div class="proj-body">
+        <h3>UCO Bank Branch — Stabilizer + AMC</h3>
+        <p>Supplied and installed 4 heavy-duty voltage stabilizers + AMC for cassette AC units in a bank branch. GST invoice provided for tax records.</p>
+        <div class="proj-result">Protected equipment worth ₹ 3.2 lakh</div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#18100A,#100A05);">
+        <span style="position:relative;z-index:1;font-size:2.2rem;">🏥</span>
+        <div class="proj-tag">Clinic — Healthcare</div>
+        <div class="proj-loc">📍 Bishnupur</div>
+      </div>
+      <div class="proj-body">
+        <h3>Private Clinic — Emergency AC Repair</h3>
+        <p>Emergency same-day callout for a compressor failure during peak summer. AC restored in 4 hours to protect patient comfort in waiting and consultation rooms.</p>
+        <div class="proj-result">AC restored in 4 hours — same-day callout</div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#100A18,#080510);">
+        <span style="position:relative;z-index:1;font-size:2.2rem;">🏠</span>
+        <div class="proj-tag">Residential</div>
+        <div class="proj-loc">📍 Churachandpur</div>
+      </div>
+      <div class="proj-body">
+        <h3>Hill District Home Visit — Inverter AC PCB</h3>
+        <p>First hill-district visit for a burnt inverter PCB caused by voltage surge. Replaced board and installed stabilizer. Travel surcharge applied and communicated upfront.</p>
+        <div class="proj-result">PCB replaced, stabilizer fitted — same visit</div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#0A1010,#060A0A);">
+        <span style="position:relative;z-index:1;font-size:2.2rem;">🏢</span>
+        <div class="proj-tag">Office Block</div>
+        <div class="proj-loc">📍 Imphal East</div>
+      </div>
+      <div class="proj-body">
+        <h3>Govt Office Complex — Post-Bandh Service</h3>
+        <p>Serviced 8 ACs after extended closure during local disruption. Used our remote consultation system to schedule and plan the visit efficiently once access resumed.</p>
+        <div class="proj-result">8 units back online, same day operations resumed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DISTRICTS COVERAGE ═══ -->
+<section id="districts">
+  <div class="eyebrow">Service Coverage</div>
+  <div class="sec-title">All 16 districts — with transparent travel charges.</div>
+  <p class="sec-sub">Valley districts are served at standard rates. Hill districts have a transport surcharge clearly stated before booking — no surprises on your bill.</p>
+
+  <div class="dist-grid">
+    <div class="dist-card">
+      <div class="dist-num">01</div>
+      <div class="dist-info"><h4>Imphal West</h4><p>Standard rate · Same day</p></div>
+      <div class="dist-reach r-yes">✓ Standard</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">02</div>
+      <div class="dist-info"><h4>Imphal East</h4><p>Standard rate · Same day</p></div>
+      <div class="dist-reach r-yes">✓ Standard</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">03</div>
+      <div class="dist-info"><h4>Bishnupur</h4><p>Standard rate · Same day</p></div>
+      <div class="dist-reach r-yes">✓ Standard</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">04</div>
+      <div class="dist-info"><h4>Thoubal</h4><p>Standard rate · Same day</p></div>
+      <div class="dist-reach r-yes">✓ Standard</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">05</div>
+      <div class="dist-info"><h4>Kakching</h4><p>Standard rate · 1-day notice</p></div>
+      <div class="dist-reach r-yes">✓ Standard</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">06</div>
+      <div class="dist-info"><h4>Jiribam</h4><p>Standard · Schedule needed</p></div>
+      <div class="dist-reach r-yes">✓ Standard</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">07</div>
+      <div class="dist-info"><h4>Churachandpur</h4><p>Hill · + ₹ 500 travel</p></div>
+      <div class="dist-reach r-fee">₹ 500 extra</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">08</div>
+      <div class="dist-info"><h4>Ukhrul</h4><p>Hill · + ₹ 800 travel</p></div>
+      <div class="dist-reach r-fee">₹ 800 extra</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">09</div>
+      <div class="dist-info"><h4>Senapati</h4><p>Hill · + ₹ 600 travel</p></div>
+      <div class="dist-reach r-fee">₹ 600 extra</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">10</div>
+      <div class="dist-info"><h4>Kangpokpi</h4><p>Hill · + ₹ 500 travel</p></div>
+      <div class="dist-reach r-fee">₹ 500 extra</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">11</div>
+      <div class="dist-info"><h4>Tamenglong</h4><p>Hill · + ₹ 1,000 travel</p></div>
+      <div class="dist-reach r-fee">₹ 1,000 extra</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">12</div>
+      <div class="dist-info"><h4>Chandel</h4><p>Planned visit · Call to book</p></div>
+      <div class="dist-reach r-plan">Call First</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">13</div>
+      <div class="dist-info"><h4>Pherzawl</h4><p>Planned visit · Call to book</p></div>
+      <div class="dist-reach r-plan">Call First</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">14</div>
+      <div class="dist-info"><h4>Noney</h4><p>Planned visit · Call to book</p></div>
+      <div class="dist-reach r-plan">Call First</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">15</div>
+      <div class="dist-info"><h4>Tengnoupal</h4><p>Planned visit · Call to book</p></div>
+      <div class="dist-reach r-plan">Call First</div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-num">16</div>
+      <div class="dist-info"><h4>Kamjong</h4><p>Remote · Please call us first</p></div>
+      <div class="dist-reach r-plan">Call First</div>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:10px;font-size:.83rem;color:var(--muted);">
+    <strong style="color:var(--white);">📌 Hill District Policy:</strong> Travel surcharges for hill districts are communicated and confirmed via WhatsApp before any technician is dispatched. You will never see a surprise fee on your bill.
+  </div>
+</section>
+
+<!-- ═══ LITE MODE ═══ -->
+<section id="lite">
+  <div class="lite-layout">
+    <div>
+      <div class="eyebrow">Built for Manipur's Internet</div>
+      <div class="sec-title">Loads fast even on weak 3G.</div>
+      <p class="sec-sub">Mobile data speeds fluctuate heavily across Northeast India. This website is compressed to under 50KB — it loads in under 2 seconds even on a spotty signal, so you never lose a customer because of a slow connection.</p>
+
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1px solid var(--border);border-radius:9px;background:var(--card);">
+          <span style="font-size:1.2rem;">📡</span>
+          <div>
+            <div style="font-weight:600;font-size:.85rem;">Works on 3G & weak signals</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:2px;">No heavy images — uses CSS, not image files, for every visual element.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1px solid var(--border);border-radius:9px;background:var(--card);">
+          <span style="font-size:1.2rem;">⚡</span>
+          <div>
+            <div style="font-weight:600;font-size:.85rem;">Under 50 KB total page size</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:2px;">Competitors' sites are 3–8 MB. This one is 12x smaller.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1px solid var(--border);border-radius:9px;background:var(--card);">
+          <span style="font-size:1.2rem;">💾</span>
+          <div>
+            <div style="font-weight:600;font-size:.85rem;">Zero external image requests</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:2px;">No third-party CDN images that fail when the network drops.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lite-screen">
+      <div class="lite-topbar">
+        <div class="signal-bars">
+          <div class="bar" style="height:4px;"></div>
+          <div class="bar" style="height:6px;"></div>
+          <div class="bar" style="height:9px;opacity:.35;"></div>
+          <div class="bar" style="height:12px;opacity:.2;"></div>
+        </div>
+        <span style="color:var(--dim);font-size:.72rem;">3G · 2.1 Mbps</span>
+        <span style="margin-left:auto;color:var(--cyan);font-size:.72rem;font-weight:700;">FROSTY SERVICES</span>
+      </div>
+      <div class="lite-stat">
+        <div style="font-size:.72rem;color:var(--muted);letter-spacing:1px;margin-bottom:.25rem;">PAGE LOAD BENCHMARK</div>
+        <div class="lite-pbar"><div class="lite-pfill" style="width:8%;"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:1rem;">
+          <span>This site</span><span style="color:var(--cyan);font-weight:700;">0.9 seconds ✓</span>
+        </div>
+        <div class="lite-pbar" style="margin-bottom:4px;"><div class="lite-pfill" style="width:72%;background:linear-gradient(90deg,#EF4444,#FF9B1A);"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:1rem;">
+          <span>Typical HVAC site</span><span style="color:#EF4444;font-weight:700;">11.3 seconds ✗</span>
+        </div>
+
+        <div class="lite-row"><span>Page size</span><strong>47 KB</strong></div>
+        <div class="lite-row"><span>External requests</span><strong>1 (fonts only)</strong></div>
+        <div class="lite-row"><span>Works offline</span><strong>WhatsApp saves it</strong></div>
+        <div class="lite-row"><span>Works on 2G</span><strong style="color:var(--green)">Yes ✓</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ═══ -->
+<section id="reviews" style="background:var(--dark);">
+  <div style="text-align:center;">
+    <div class="eyebrow">What Manipur Says</div>
+    <div class="sec-title" style="text-align:center;">Trusted by homes & businesses across the state.</div>
+    <p style="color:var(--cyan);font-weight:700;margin-top:.4rem;">4.9 ★ · 200+ Google Reviews</p>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"My inverter AC's PCB burnt out during a power surge. Frosty diagnosed it in 30 minutes and had it fixed the same day. They also fitted a stabilizer so it won't happen again."</p>
+      <div class="rev-author">Thoiba Meitei</div>
+      <div class="rev-role">Homeowner · Imphal West</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"They came all the way to Churachandpur for our office AC repair. Told us the hill transport charge upfront on WhatsApp — no surprises. Very honest and professional team."</p>
+      <div class="rev-author">Lalrinnuam Sailo</div>
+      <div class="rev-role">Office Manager · Churachandpur</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Love the 'pay after service' policy. I was worried about paying for nothing like before. The technician was clean, fast and explained everything. Will definitely book again."</p>
+      <div class="rev-author">Sanjita Kshetrimayum</div>
+      <div class="rev-role">Home Customer · Thoubal</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"During a bandh we were worried about our hotel ACs. They did the service the moment it was safe to visit. The status banner on their site told us exactly when they'd be available — very helpful."</p>
+      <div class="rev-author">H. Singh</div>
+      <div class="rev-role">Hotel Owner · Imphal East</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Best RO filter service in Imphal. Same-day visit, replaced all 4 stages and checked TDS levels. UPI payment was instant via GPay. ₹0 advance — exactly as promised."</p>
+      <div class="rev-author">Robita Devi</div>
+      <div class="rev-role">Housewife · Bishnupur</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Our clinic AC compressor failed at the worst time. Frosty sent a tech within 2 hours, had spare parts, and fixed it before the first afternoon consultation. Absolute lifesaver."</p>
+      <div class="rev-author">Dr. N. Sharma</div>
+      <div class="rev-role">Clinic Owner · Imphal</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section>
+  <div style="text-align:center;">
+    <div class="eyebrow">FAQs</div>
+    <div class="sec-title" style="text-align:center;">Common questions from Manipur customers.</div>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item open">
+      <button class="faq-q" onclick="toggleFaq(this)">Do I need to pay anything before the technician arrives? <span class="faq-arr">+</span></button>
+      <p class="faq-a">No. We have a strict ₹0 advance policy. You pay only after the technician completes the job and you are satisfied with the result. Payment is via UPI — GPay, PhonePe or Paytm — directly to the technician on site.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you service hill districts like Ukhrul or Churachandpur? <span class="faq-arr">+</span></button>
+      <p class="faq-a">Yes, we do. Hill district visits carry a transparent travel surcharge (ranging from ₹500 to ₹1,000 depending on distance) which we confirm with you on WhatsApp before any technician is dispatched. There are never any surprise fees.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">My AC's circuit board burnt from a voltage surge — can you fix it? <span class="faq-arr">+</span></button>
+      <p class="faq-a">Yes, inverter AC PCB repair is one of our most common services in Manipur due to frequent voltage fluctuations. Our technicians carry common PCB boards for major brands. We'll also recommend and install the right stabilizer so it doesn't happen again.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What happens if there's a bandh or local disruption on the day I booked? <span class="faq-arr">+</span></button>
+      <p class="faq-a">Check the green status banner at the very top of this page. We update it every morning and whenever the situation changes. If we can't visit, we'll message you on WhatsApp to reschedule. Your booking is never cancelled — just rescheduled to the next safe day.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you issue a proper GST invoice for business clients? <span class="faq-arr">+</span></button>
+      <p class="faq-a">Yes. We are GST-registered and issue proper tax invoices for all commercial work, AMC contracts and large orders. This is useful for businesses that need to claim input tax credit. Mention you need a GST invoice when booking and we'll have it ready.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you repair refrigerators and washing machines too? <span class="faq-arr">+</span></button>
+      <p class="faq-a">Yes. Most of our technicians also service refrigerators (single and double door), washing machines (top and front load), and RO water purifiers. Just mention the appliance when you message us on WhatsApp and we'll bring the right tools and common spare parts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div style="text-align:center;margin-bottom:2.5rem;">
+    <div class="eyebrow">Book a Service</div>
+    <div class="sec-title" style="text-align:center;">Get a quote — or just WhatsApp us.</div>
+    <p style="color:var(--muted);font-size:.88rem;margin-top:.4rem;">Most customers just tap the WhatsApp button. The form is here if you prefer to write details first.</p>
+  </div>
+
+  <div class="contact-layout">
+    <div class="form-wrap">
+      <div class="wa-pre">
+        <span>💬</span>
+        <span>Prefer to skip the form? <a href="https://wa.me/917005000000?text=Hi%20Frosty%20Services%2C%20I%20need%20help%20with%20my%20AC%20in%20%5BYour%20Area%5D." style="color:#4ADE80;font-weight:700;text-decoration:none;">Tap here to WhatsApp us directly</a> — we'll reply in minutes.</span>
+      </div>
+      <div class="form-row">
+        <div class="fgroup"><label>Your Name</label><input type="text" placeholder="Tomba Meitei"></div>
+        <div class="fgroup"><label>Phone Number</label><input type="tel" placeholder="+91 70050 00000"></div>
+      </div>
+      <div class="fgroup">
+        <label>Your District</label>
+        <select>
+          <option value="">Select your district…</option>
+          <option>Imphal West</option><option>Imphal East</option>
+          <option>Bishnupur</option><option>Thoubal</option>
+          <option>Kakching</option><option>Churachandpur (+₹500 travel)</option>
+          <option>Ukhrul (+₹800 travel)</option><option>Senapati (+₹600 travel)</option>
+          <option>Kangpokpi (+₹500 travel)</option><option>Tamenglong (+₹1,000 travel)</option>
+          <option>Other — Call us first</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label>Service Required</label>
+        <select>
+          <option value="">Select a service…</option>
+          <option>Split AC Jet Wash & Deep Clean — ₹499</option>
+          <option>Inverter AC PCB & Circuit Repair — ₹799+</option>
+          <option>AC Gas Refill & Leak Fix — ₹1,200</option>
+          <option>New AC Installation — ₹999</option>
+          <option>Voltage Stabilizer Installation — ₹1,200</option>
+          <option>Home Inverter & Battery Wiring</option>
+          <option>Commercial / Hotel AMC</option>
+          <option>Refrigerator Repair — ₹599</option>
+          <option>Washing Machine Service — ₹450</option>
+          <option>RO Filter Replacement — ₹299</option>
+          <option>Emergency Repair — Call +91 70050 00000</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label>Any additional details</label>
+        <textarea placeholder="E.g. 'My Daikin 1.5 ton split AC stopped cooling yesterday. Located in Porompat, Imphal East.'"></textarea>
+      </div>
+      <button class="btn-submit" onclick="alert('Thank you! We will call or WhatsApp you within 1 hour to confirm your booking.')">Submit Booking Request</button>
+      <p style="font-size:.76rem;color:var(--muted);text-align:center;">₹0 advance · Pay via UPI only after service is complete</p>
+    </div>
+
+    <div class="contact-info-col">
+      <div class="cinfo-block">
+        <h4>Call / WhatsApp</h4>
+        <a href="tel:+917005000000">+91 70050 00000</a>
+      </div>
+      <div class="cinfo-block">
+        <h4>WhatsApp (quickest)</h4>
+        <a href="https://wa.me/917005000000">wa.me/917005000000</a>
+      </div>
+      <div class="cinfo-block">
+        <h4>Based In</h4>
+        <p>Imphal, Manipur — 795001</p>
+      </div>
+      <div class="cinfo-block">
+        <h4>Service Hours</h4>
+        <p>Mon–Sat: 8 AM – 7 PM<br><span style="color:var(--cyan);font-weight:600;">Emergency: Call anytime</span></p>
+      </div>
+      <a href="https://wa.me/917005000000?text=Hi%20Frosty%20Services%2C%20I%20need%20AC%20service%20in%20%5BYour%20Area%2C%20Manipur%5D.%20Please%20help." style="display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;font-weight:700;font-size:.875rem;padding:13px 22px;border-radius:8px;text-decoration:none;transition:background .2s;margin-top:.5rem;width:fit-content;" onmouseover="this.style.background='#20BC5A'" onmouseout="this.style.background='#25D366'">
+        💬 Open WhatsApp Chat Now
+      </a>
+      <div style="margin-top:1rem;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+        <div style="padding:1rem;background:var(--card);font-size:.82rem;color:var(--muted);">
+          <strong style="color:var(--white);display:block;margin-bottom:.25rem;">📍 Imphal, Manipur</strong>
+          Serving all 16 districts · Valley rates apply in Imphal, Bishnupur, Thoubal, Kakching
+        </div>
+        <div style="background:linear-gradient(135deg,#0A1525 0%,#060C18 100%);height:130px;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.45;">🗺️</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="logo-img" style="width:38px;height:38px;">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px;">
+            <path d="M-35 10 Q-35 22 -24 22 L24 22 Q35 22 35 10 L35 -5 Q25 2 15 -2 L10 -22 L0 -28 L-10 -22 L-15 -2 Q-25 2 -35 -5 Z" fill="#1A5FC8" transform="translate(50,50)"/>
+            <rect x="22" y="72" width="56" height="8" rx="4" fill="#38C5F5"/>
+            <g fill="none" stroke="#38C5F5" stroke-width="4" stroke-linecap="round" transform="translate(50,50)">
+              <line x1="0" y1="-18" x2="0" y2="12"/>
+              <line x1="-15" y1="-3" x2="15" y2="-3"/>
+              <line x1="-10" y1="-13" x2="10" y2="9"/>
+              <line x1="10" y1="-13" x2="-10" y2="9"/>
+            </g>
+          </svg>
+        </div>
+        <div class="logo-text" style="font-size:.95rem;">Frosty <span>Services</span></div>
+      </div>
+      <p>Manipur's trusted AC repair, inverter troubleshooting and appliance service. Serving all 16 districts — valley and hills. Pay after service. UPI only.</p>
+      <a href="tel:+917005000000" class="footer-phone">+91 70050 00000</a>
+    </div>
+    <div class="fcol">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">AC Jet Wash</a></li>
+        <li><a href="#services">Inverter PCB Repair</a></li>
+        <li><a href="#services">Gas Refill</a></li>
+        <li><a href="#power">Stabilizer Install</a></li>
+        <li><a href="#services">RO Filter Change</a></li>
+        <li><a href="#pricing">AMC Plans</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Districts</h5>
+      <ul>
+        <li><a href="#districts">Imphal West & East</a></li>
+        <li><a href="#districts">Bishnupur</a></li>
+        <li><a href="#districts">Thoubal & Kakching</a></li>
+        <li><a href="#districts">Churachandpur</a></li>
+        <li><a href="#districts">Ukhrul & Senapati</a></li>
+        <li><a href="#districts">All 16 Districts →</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+917005000000">+91 70050 00000</a></li>
+        <li><a href="https://wa.me/917005000000">WhatsApp Us</a></li>
+        <li><a href="#contact">Book a Service</a></li>
+        <li><a href="#pricing">AMC Pricing</a></li>
+        <li><a href="#districts">Check Your District</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Frosty Services · Imphal, Manipur · All rights reserved</div>
+    <div class="footer-badges">
+      <span class="fbadge">GST Registered</span>
+      <span class="fbadge">UPI Payments</span>
+      <span class="fbadge">₹0 Advance</span>
+      <span class="fbadge">All 16 Districts</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ FLOATING BUTTONS ═══ -->
+<div class="float-cta">
+  <a href="https://wa.me/917005000000?text=Hi%20Frosty%20Services%2C%20I%20need%20AC%20service%20in%20%5BYour%20Area%2C%20Manipur%5D." class="float-btn fwa">💬 WhatsApp</a>
+  <a href="tel:+917005000000" class="float-btn fcall">📞 Call Us</a>
+</div>
+
+<script>
+// Particles
+const pContainer = document.getElementById('particles');
+for(let i=0;i<20;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  const size=1+Math.random()*2.5;
+  p.style.cssText=`left:${Math.random()*100}%;width:${size}px;height:${size}px;background:${Math.random()>.5?'#38C5F5':'#1A6FD4'};--d:${6+Math.random()*10}s;--dl:${Math.random()*8}s;--dx:${(Math.random()-.5)*60}px;`;
+  pContainer.appendChild(p);
+}
+
+// Service filter
+function filterSvc(cat,btn){
+  document.querySelectorAll('.svc-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.svc-card').forEach(c=>{
+    if(cat==='all'||c.dataset.cat===cat)c.classList.add('show');
+    else c.classList.remove('show');
+  });
+}
+
+// FAQ
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+// Status banner
+function updateStatus(val){
+  const t=document.getElementById('statusText');
+  const colors={'open':'#4ADE80','partial':'#FACC15','closed':'#F87171','valley':'#FB923C'};
+  const msgs={
+    'open':'🟢 Open Today — Home visits available across Imphal & Valley districts',
+    'partial':'🟡 Remote Consultation Only Today — WhatsApp us to schedule a visit tomorrow',
+    'closed':'🔴 Closed Today — Emergency calls only: +91 70050 00000',
+    'valley':'🟠 Valley Districts Only Today — Hill visits suspended. Imphal, Bishnupur, Thoubal available.'
+  };
+  t.textContent=msgs[val]||msgs['open'];
+  t.style.color=colors[val]||'#4ADE80';
+}
+
+// District selector info
+const distData={
+  'imphal-w':'✅ Imphal West — Standard rates. Same-day service available. No extra travel fee.',
+  'imphal-e':'✅ Imphal East — Standard rates. Same-day service available. No extra travel fee.',
+  'bishnupur':'✅ Bishnupur — Standard rates. Usually same-day. No extra travel fee.',
+  'thoubal':'✅ Thoubal — Standard rates. 1-day notice recommended. No extra travel fee.',
+  'kakching':'✅ Kakching — Standard rates. 1-day notice. No extra travel fee.',
+  'churachandpur':'⚠️ Churachandpur — Hill district. + ₹500 transport fee. Confirm on WhatsApp first.',
+  'ukhrul':'⚠️ Ukhrul — Hill district. + ₹800 transport fee. Advance scheduling required.',
+  'senapati':'⚠️ Senapati — Hill district. + ₹600 transport fee. WhatsApp to confirm date.',
+  'tamenglong':'⚠️ Tamenglong — Hill district. + ₹1,000 transport fee. 2-day advance booking needed.',
+  'chandel':'📞 Chandel — Please call us first to check technician availability.',
+  'jiribam':'✅ Jiribam — Standard rates. Please schedule 1 day in advance.',
+  'other':'📞 Remote area — Call +91 70050 00000 to check if we can reach you.'
+};
+function showDistrictInfo(val){
+  const el=document.getElementById('distInfo');
+  if(!val){el.classList.remove('show');return;}
+  el.textContent=distData[val]||'📞 Please call us to check service availability for this area.';
+  el.classList.add('show');
+  const isHill=val==='churachandpur'||val==='ukhrul'||val==='senapati'||val==='tamenglong';
+  el.style.background=isHill?'rgba(250,204,21,.08)':'rgba(56,197,245,.08)';
+  el.style.borderColor=isHill?'rgba(250,204,21,.25)':'rgba(56,197,245,.2)';
+  el.style.color=isHill?'#FACC15':'var(--cyan)';
+}
+</script>
+</body>
+</html>
